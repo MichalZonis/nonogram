@@ -1,0 +1,29 @@
+
+<form [formGroup]="defineSizeForm" (ngSubmit)="defineBoardSize()">
+  <div class="row">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="height">Height</span>
+        <input type="number" formControlName="height" class="form-control"
+         aria-label="height" aria-describedby="height" required>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="width">Width</span>
+        <input type="number" formControlName="width" class="form-control"
+         aria-label="width" aria-describedby="width" required>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+      <button type="submit" class="btn btn-dark" >play!</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<div class="d-flex justify-content-center p-5">
+  <app-board></app-board>
+  </div>
