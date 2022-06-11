@@ -21,6 +21,10 @@ export class Cell {
     this.state = Object.values(states)[indexOfNextState]
   }
 
+  setState(newState: states) : void {
+    this.state = newState;
+  }
+
 };
 
 
