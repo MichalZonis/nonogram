@@ -1,5 +1,5 @@
 
-<form [formGroup]="defineSizeForm" (ngSubmit)="defineBoardSize()">
+<form [formGroup]="defineSizeForm" (ngSubmit)="StartGame()">
   <div class="row">
     <div class="col">
       <div class="input-group mb-3">
@@ -25,5 +25,5 @@
 
 
 <div class="d-flex justify-content-center p-5">
-  <app-board></app-board>
+  <app-board [gameTemplate]="game"></app-board>
   </div>
