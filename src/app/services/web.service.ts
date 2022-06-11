@@ -12,6 +12,7 @@ export class WebService {
   }
 
   public get(uri: string) {
+    
     return this.http.get(`${this.ROOT_URL}/${uri}`)
   }
 
