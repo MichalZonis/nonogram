@@ -9,8 +9,8 @@ export class GameService {
   constructor(private WebService: WebService) { }
 
    GetGameBySize(width: number, height: number) : Game {
-    return {game: "*-----**-----",
-            size: {width: 4,
-                  height: 3}}
+    return {game: "-*-***-*-*-**-**--",
+            size: {width: 3,
+                  height: 6}}
   }
 }
