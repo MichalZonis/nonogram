@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {states} from '../../models/states.enum';
 import { Cell } from 'src/app/models/cell.model';
 import Game from '../../models/game';
@@ -8,10 +8,10 @@ import Game from '../../models/game';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, OnChanges {
 
-  height: number = 3
-  width: number  = 4
+  @Input() height: number = 7
+  @Input() width: number  = 7
   game: Cell[][] = this.initGameBoard()
   @Input() gameTemplate: Game = {game: "*-----**-----",
                                  size: {width: 4,
@@ -23,25 +23,15 @@ export class BoardComponent implements OnInit {
     //this.initGameBoard();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("change")
+    this.game = this.initGameBoard()
+  }
+
   initGameBoard (gameString?: string) : Cell[][] {
     console.table(this.game)
-    //TODO: calculate win: use this code
-   /* let populatedBoard = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(()=>new Cell()));
-    this.gameTemplate.game.split("").map((curr, index) => {
-      if(curr == '*') {
-        populatedBoard[index % this.gameTemplate.size.width - 1][index % this.gameTemplate.size.height - 1].setState(states.black);
-      }
-    })
-    this.width = this.gameTemplate.size.width;
-    this.height = this.gameTemplate.size.height;
-*/
-   /* for (let row = 0; row < this.gameTemplate.size.height; row++) {
-      for (let column = 0; column < this.gameTemplate.size.width; column++) {
 
-      }
-    }*/
-    //return populatedBoard;
-    return new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(()=>new Cell()));
+    return new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(()=> new Cell()));
   }
 
   createRange(r: number) {
