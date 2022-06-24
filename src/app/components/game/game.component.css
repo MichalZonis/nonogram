@@ -1,0 +1,39 @@
+td {
+  width: 20px;
+  height: 20px;
+}
+
+#columnGroup {
+  position: absolute;
+  /*top: 4px;
+  left: 39px;*/
+  transform-origin: center top 0px;
+ /* z-index: 502;*/
+}
+
+#columnGroup td {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+#rowGroup {
+  position: absolute;
+  /*top: 37px;
+  left: 5px;*/
+  transform-origin: left center 0px;
+ /* z-index: 501;*/
+}
+
+#rowGroup td {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+#game {
+  position: relative;
+  visibility: visible;
+  transform: scale(1);
+  margin: 1px;
+}

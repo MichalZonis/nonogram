@@ -121,6 +121,8 @@ export class GameComponent implements OnInit {
   }
 
   calculateMaxArray(twoDArray: Array<Array<number>>): number {
-    return twoDArray.sort((a, b) => { return b.length - a.length;})[0].length 
+    const tempArray : Array<Array<number>> = [];
+    twoDArray.forEach(val => tempArray.push(Object.assign([], val)));
+    return tempArray.sort((a, b) => { return b.length - a.length;})[0].length
   }
 }
