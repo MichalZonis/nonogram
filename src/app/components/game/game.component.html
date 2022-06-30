@@ -25,28 +25,36 @@
 
 <div id="game" class="container">
   <div class="d-flex justify-content-center">
-  <!--div class="row row-cols-2">
-    <div class="col p-0"></div>
-    <div class="col p-0"-->
-      <table id="columnGroup" class="table table-bordered border border-dark">
-      <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
-        <td *ngFor="let row of createRange(width); index as j"
-         class="border border-dark">
-        {{columnGroups[j][i]}}
-        </td>
-      </tr>
-    </table>
-    <!--/div-->
-    <!--div class="col p-0"-->
-      <table id="rowGroup" class="table table-bordered border border-dark">
-      <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
-        <td *ngFor="let row of createRange(calculateMaxArray(rowGroups)); index as j"
-         class="border border-dark">
-         {{rowGroups[i][j]}}
-        </td>
-      </tr>
-    </table>
-    <!--div-->
-    <!--div class="col p-0"--> <app-board [width]="width" [height]="height"></app-board></div>
+      <table class="table">
+        <tr>
+          <td></td>
+          <td>
+            <table id="columnGroup" class="table table-bordered border border-dark">
+              <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
+                <td id="cell" *ngFor="let row of createRange(width); index as j"
+                class="border border-dark">
+                  {{columnGroups[j][i]}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <table id="rowGroup" class="table table-bordered border border-dark">
+              <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
+                <td id="cell" *ngFor="let row of createRange(calculateMaxArray(rowGroups)); index as j"
+                class="border border-dark">
+                  {{rowGroups[i][j]}}
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <app-board [width]="width" [height]="height"></app-board>
+          </td>
+        </tr>
+      </table>
+  </div>
   </div>
 
