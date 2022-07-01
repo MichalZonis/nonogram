@@ -40,13 +40,13 @@ app-board {
   font-size: 15px;
   text-align: center;
 }
-
+/*
 #game {
   display: grid;
   gap: 0px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-}
+}*/
 
 #rowGroup {
   grid-area: 2 / 1 / 3 / 2; 
