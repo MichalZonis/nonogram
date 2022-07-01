@@ -13,10 +13,10 @@ export class BoardComponent implements OnInit, OnChanges {
   @Input() height: number = 7
   @Input() width: number  = 7
   game: Cell[][] = this.initGameBoard()
-  @Input() gameTemplate: Game = {game: "*-----**-----",
-                                 size: {width: 4,
-                                        height: 3}}
-
+ /* @Input() gameTemplate: Game = {game: "*-----**-----",
+                                 width: 4,
+                                height: 3}
+*/
   constructor() { }
 
   ngOnInit(): void {
@@ -43,4 +43,19 @@ export class BoardComponent implements OnInit, OnChanges {
     console.log('1.', "toggle", row, column, this.game[row][column].isBlackened(), Date() )
   }
 
+  createBoardString() : string{
+    let res: string = "";
+    for (let i = 0; i < this.height; i++) {
+      for (let j = 0; j < this.width; j++) {
+        if(this.game[i][j].isBlackened()){
+          res += '*';
+        }
+        else {
+          res += '-';
+        }
+      }
+    }
+
+    return res;
+  }
 }
