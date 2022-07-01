@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { NodeWithI18n } from '@angular/compiler';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import Game from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
+import { BoardComponent } from '../board/board.component';
+import { ClockComponent } from '../clock/clock.component';
 
 @Component({
   selector: 'app-game',
@@ -10,12 +13,20 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class GameComponent implements OnInit {
 
-  game: Game = {game: "",
-                size: {height: 3,
-                      width: 4}}
+  @ViewChild(BoardComponent) board!: BoardComponent;
+  @ViewChild(ClockComponent) stopwatch!: ClockComponent;
+
+  game: Game = {Sequence: "",
+                Name: "Sample",
+                Author: "Me",
+                CreationTime: new Date(),
+                height: 3,
+                width: 4,
+                _id: ""}
   width: number = 7;
   height: number = 7;
 
+  //TODO: refactor components so this will be in hints
   columnGroups: Array<Array<number>> = []
   rowGroups: Array<Array<number>> = []
 
@@ -34,23 +45,33 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+
+  }
+
   StartGame (): void {
     //Random game
     console.log(this.defineSizeForm.value)
 
-    //Set board size
-    this.width = this.defineSizeForm.value.width
-    this.height = this.defineSizeForm.value.height
     console.log([this.width, this.height])
 
-    let game = this.GameService.GetGameBySize(this.width, this.height)
-    console.log(this.GameService.GetGameBySize(this.width, this.height))
-    this.calculateGame(game.game)
+    this.GameService.GetGameBySize(this.defineSizeForm.value.width, this.defineSizeForm.value.height).subscribe((gameRes:any) => {
+      if(gameRes){
+        //Set board size
+        this.width = this.defineSizeForm.value.width
+        this.height = this.defineSizeForm.value.height
 
+        this.game = gameRes;
+        console.log(this.game);
 
-    //Calaculate row and column data
+        //Calaculate row and column data
+        this.calculateGame(this.game.Sequence);
+      }
+    })
+
     //Start clock
-
+    this.stopwatch.clearTimer();
+    this.stopwatch.startTimer();
   }
 
   calculateGame (game: string) {
@@ -97,24 +118,24 @@ export class GameComponent implements OnInit {
     this.columnGroups = columnGroups;
   }
 
-  calculateWin () {
-    //TODO: calculate win: use this code
-   /* let populatedBoard = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(()=>new Cell()));
-    this.gameTemplate.game.split("").map((curr, index) => {
-      if(curr == '*') {
-        populatedBoard[index % this.gameTemplate.size.width - 1][index % this.gameTemplate.size.height - 1].setState(states.black);
+  checkWin() {
+    let boardSeq = this.board.createBoardString();
+    console.log(boardSeq);
+    this.GameService.CheckWin(this.game._id, boardSeq).subscribe((res) => {
+      console.log(res);
+      if(res) {
+        this.winner();
       }
-    })
-    this.width = this.gameTemplate.size.width;
-    this.height = this.gameTemplate.size.height;
-*/
-   /* for (let row = 0; row < this.gameTemplate.size.height; row++) {
-      for (let column = 0; column < this.gameTemplate.size.width; column++) {
-
-      }
-    }*/
-    //return populatedBoard;
+      else {
+        //this.tryAgain();
+      }})
   }
+
+winner() {
+this.stopwatch.clearTimer();
+//TODO: popup of the time and congrations
+}
+
 
   createRange(r: number) {
     return new Array(r);
