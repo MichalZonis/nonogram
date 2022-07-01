@@ -8,9 +8,11 @@ export class GameService {
 
   constructor(private WebService: WebService) { }
 
-   GetGameBySize(width: number, height: number) : Game {
-    return {game: "-*-***-*-*-**-**--",
-            size: {width: 3,
-                  height: 6}}
+   GetGameBySize(width: number, height: number) {
+    return this.WebService.get(`game/${width}/${height}`);
+  }
+
+  CheckWin(id: string, boardSeq: string) {
+    return this.WebService.get(`game/${id}/seq/${boardSeq}`);
   }
 }
