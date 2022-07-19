@@ -1,6 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-<span class="navbar-brand mb-0 h1">NONOGRAM</span>
+    <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">
+        <a class="nav-link" routerLink="/home"> 
+            NONOGRAM 
+        </a>
+    </span>
+<a class="nav-link active" aria-current="page" routerLink="/play" >Play</a>
+<a class="nav-link" routerLink="/create" >Create a game</a>
+</div>
 </nav>
 
+<router-outlet></router-outlet>
 
-<app-game></app-game>
