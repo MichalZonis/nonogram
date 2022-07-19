@@ -15,4 +15,12 @@ export class GameService {
   CheckWin(id: string, boardSeq: string) {
     return this.WebService.get(`game/${id}/seq/${boardSeq}`);
   }
+
+  getRowHints(id: string) {
+    return this.WebService.get(`game/${id}/hints/rows`);
+  }
+
+  getColumnHints(id: string){
+    return this.WebService.get(`game/${id}/hints/columns`);
+  }
 }
