@@ -14,12 +14,19 @@
 td {
   width: 30px;
   height: 30px;
+  text-overflow: ellipsis;
+  display: table-cell;
+  background-size: 30px 30px;
+  font-size: 15px;
+  text-align: center;
 }
+
 
 table {
   margin: 0px;
   padding: 0px;
   margin-bottom:0rem;
+  width: fit-content;
 }
 
 

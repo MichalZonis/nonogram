@@ -1,36 +1,5 @@
-/*#columnGroup {
-  height:100%;
-  width:100%;
-  align-items: stretch;
-  margin: 0px;
-}
 
-#rowGroup {
-  height:100%;
-  width:100%;
-  align-items: stretch;
-  align-self: flex-end;
-}
-
-app-board {
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: stretch;
-  align-items: stretch;
-  align-self: flex-end;
-}
-
-#game {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: stretch;
-  align-items: stretch;
-  table-layout:fixed
-}
-*/
+/*TODO: this need to be in board and hints*/
 #cell {
   width: 30px;
   height: 30px;
@@ -40,63 +9,10 @@ app-board {
   font-size: 15px;
   text-align: center;
 }
-/*
-#game {
-  display: grid;
-  gap: 0px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-}*/
 
-#rowGroup {
-  grid-area: 2 / 1 / 3 / 2; 
-}
-
-#columnGroup {
-  grid-area: 1 / 2 / 2 / 3; 
-}
-
-app-board {
-  grid-area: 2 / 2 / 3 / 3;
-}
-
+/*TODO: this need to be in board and hints*/
 table.table {
   margin:0rem;
   width: fit-content;
 }
 
-/*
-#columnGroup {
-  position: absolute;
-  /*top: 4px;
-  left: 39px;*//*
-  transform-origin: center top 0px;
- /* z-index: 502;*//*
-}*/
-/*
-#columnGroup td {
- 
-  text-align: center;
-}
-*//*
-#rowGroup {
-  position: absolute;
-  /*top: 37px;
-  left: 5px;*//*
-  transform-origin: left center 0px;
- /* z-index: 501;*//*
-}
-*//*
-#rowGroup td {
-  width: 20px;
-  height: 20px;
-  text-align: center;
-}
-
-#game {
-  position: relative;
-  visibility: visible;
-  transform: scale(1);
-  margin: 1px;
-}
-*/
