@@ -73,4 +73,7 @@ export class HintsComponent implements OnInit {
     twoDArray.forEach(val => tempArray.push(Object.assign([], val)));
     return tempArray.sort((a, b) => { return b.length - a.length;})[0].length
   }*/
+  createRange(r: number) {
+    return new Array(r);
+  }
 }
