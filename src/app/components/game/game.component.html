@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<form [formGroup]="defineSizeForm" (ngSubmit)="StartGame()">
+<form [formGroup]="defineSizeForm" (ngSubmit)="StartGame()" ngNativeValidate>
   <div class="row">
     <div class="col">
       <div class="input-group mb-3">
@@ -59,6 +59,8 @@
   </div>
   </div>
 
-  <app-clock></app-clock>
-  <button *ngIf="game" (click)="checkWin()" type="button" class="btn btn-dark">I'm Done!</button>
+  <div class="m-3 d-flex justify-content-center" style="background:red">
+    <app-clock></app-clock>
+  </div>
+  <button *ngIf="game" (click)="checkWin()" type="button" class="btn btn-dark m-3 d-flex">I'm Done!</button>
 
