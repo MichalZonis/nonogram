@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import {states} from '../../models/states.enum';
 import { Cell } from 'src/app/models/cell.model';
 import Game from '../../models/game';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-board',
@@ -13,11 +14,11 @@ export class BoardComponent implements OnInit, OnChanges {
   @Input() height: number = 7
   @Input() width: number  = 7
   game: Cell[][] = this.initGameBoard()
- /* @Input() gameTemplate: Game = {game: "*-----**-----",
-                                 width: 4,
-                                height: 3}
-*/
-  constructor() { }
+  @Input() disableEmptyState: boolean = false
+
+  constructor(
+    GeneralService: GeneralService
+  ) { }
 
   ngOnInit(): void {
     //this.initGameBoard();
@@ -39,7 +40,7 @@ export class BoardComponent implements OnInit, OnChanges {
   }
 
   toggleState(row: number, column:number) {
-    this.game[row][column].setNextState();
+    this.game[row][column].setNextState(this.disableEmptyState);
     console.log('1.', "toggle", row, column, this.game[row][column].isBlackened(), Date() )
   }
 

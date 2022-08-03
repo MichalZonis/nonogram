@@ -55,6 +55,7 @@ export class GameComponent implements OnInit {
     console.log([this.width, this.height])
 
     this.GameService.GetGameBySize(this.defineSizeForm.value.width, this.defineSizeForm.value.height).subscribe((gameRes:any) => {
+      
       if(gameRes){
         //Set board size
         this.width = this.defineSizeForm.value.width
