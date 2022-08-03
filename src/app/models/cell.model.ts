@@ -15,10 +15,13 @@ export class Cell {
   isEmpty (): boolean {
     return (this.state == states.empty)
   }
-  setNextState() : void {
-    //debugger
+  setNextState(disableEmptyState: boolean) : void {
     var indexOfNextState = (Object.values(states).indexOf(this.state) + 1) % 3;
     this.state = Object.values(states)[indexOfNextState]
+
+    if(disableEmptyState && this.isEmpty()) {
+      this.setNextState(disableEmptyState);
+    }
   }
 
   setState(newState: states) : void {
