@@ -1,1 +1,43 @@
-<p>game-creation works!</p>
+<div class="container-fluid">
+    <form [formGroup]="defineSizeForm" (ngSubmit)="createBoard()">
+      <div class="row">
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="height">Height</span>
+            <input type="number" formControlName="height" class="form-control"
+             aria-label="height" aria-describedby="height" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="width">Width</span>
+            <input type="number" formControlName="width" class="form-control"
+             aria-label="width" aria-describedby="width" required>
+          </div>
+        </div>
+        <div class="col">
+          <div class="input-group mb-3">
+          <button type="submit" class="btn btn-dark" >Define Board Size</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+
+<div class="d-flex justify-content-center">
+    <div class="row">
+    <!--span class="input-group-text" id="BoardName">Name</span-->
+    <input type="text" class="form-control" [(ngModel)]="BoardName" placeholder="Name Your Game:"
+        aria-label="BoardName" aria-describedby="BoardName" required>
+    </div>
+</div>
+<div class="d-flex justify-content-center p-3">
+    <app-board [width]="width" [height]="height" [disableEmptyState]="true"></app-board>
+</div>
+<div class="d-flex justify-content-center mb-3">
+    <form (ngSubmit)="CreateGame()">
+        <button class="btn btn-dark" type="submit">
+            I'm Done!
+        </button>
+    </form>
+</div>
