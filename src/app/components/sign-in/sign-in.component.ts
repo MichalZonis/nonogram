@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService, TokenPayload  } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+    credentials: TokenPayload = {
+    name: '',
+    email: '',
+    password: ''
+  };
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: AuthenticationService,
+     private router: Router
+
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  register() {
+    this.auth.register(this.credentials).subscribe(() => {
+      this.router.navigateByUrl('/profile');
+    }, (err) => {
+      console.error(err);
+    });
   }
 
 }

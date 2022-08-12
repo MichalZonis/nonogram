@@ -1,1 +1,43 @@
-<p>sign-in works!</p>
+
+<div class="container-fluid">
+    <form (ngSubmit)="register()">
+      <div class="row">
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="name">Your Name</span>
+            <input type="text" class="form-control" name="name"
+             aria-label="name" aria-describedby="name" required [(ngModel)]="credentials.name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="email">Your Email</span>
+            <input type="email" class="form-control" name="email"
+             aria-label="email" aria-describedby="email" required [(ngModel)]="credentials.email">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="password">Your Password</span>
+            <input type="password" class="form-control" name="password"
+             aria-label="password" aria-describedby="password" required [(ngModel)]="credentials.password">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col">
+          <div class="input-group mb-3">
+          <button type="submit" class="btn btn-dark" >Sign In!</button>
+          </div>
+        </div>
+    </div>
+    
+    </form>
+    </div>
