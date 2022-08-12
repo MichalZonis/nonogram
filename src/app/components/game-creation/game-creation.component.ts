@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BoardComponent } from '../board/board.component';
 
 @Component({
@@ -22,6 +24,8 @@ export class GameCreationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private auth: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -38,6 +42,9 @@ export class GameCreationComponent implements OnInit {
 
   CreateGame(): void {
 
+    if(!this.auth.isLoggedIn()) {
+      this.router.navigateByUrl('/login')
+    }
     console.log(this.board.createBoardString())
     console.log(this.BoardName)
     //TODO: send board string to server to save
