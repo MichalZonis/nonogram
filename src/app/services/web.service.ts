@@ -11,21 +11,21 @@ export class WebService {
     this.ROOT_URL = "http://localhost:8000";
   }
 
-  public get(uri: string) {
-    
-    return this.http.get(`${this.ROOT_URL}/${uri}`)
-  }
-
-  public post(uri: string, payload: Object) {
+  public get(uri: string, payload?: Object) {
+    console.log(payload)
     return this.http.get(`${this.ROOT_URL}/${uri}`, payload)
   }
 
-  public put(uri: string, payload: Object) {
-    return this.http.get(`${this.ROOT_URL}/${uri}`, payload)
+  public post(uri: string, payload?: Object) {
+    return this.http.post(`${this.ROOT_URL}/${uri}`, payload)
   }
 
-  public delete(uri: string) {
-    return this.http.get(`${this.ROOT_URL}/${uri}`)
+  public put(uri: string, payload?: Object) {
+    return this.http.put(`${this.ROOT_URL}/${uri}`, payload)
+  }
+
+  public delete(uri: string, payload?: Object) {
+    return this.http.delete(`${this.ROOT_URL}/${uri}`, payload)
   }
 
 }
