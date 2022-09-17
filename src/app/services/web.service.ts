@@ -16,8 +16,9 @@ export class WebService {
     return this.http.get(`${this.ROOT_URL}/${uri}`, payload)
   }
 
-  public post(uri: string, payload?: Object) {
-    return this.http.post(`${this.ROOT_URL}/${uri}`, payload)
+  public post(uri: string, payload?: Object, options?: {}) {
+    console.log("post", payload)
+    return this.http.post(`${this.ROOT_URL}/${uri}`, payload, options)
   }
 
   public put(uri: string, payload?: Object) {
