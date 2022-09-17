@@ -16,3 +16,11 @@ table.table {
   width: fit-content;
 }
 
+.winner {
+  background-color: green;
+}
+
+.game {
+  background-color: red;
+}
+
