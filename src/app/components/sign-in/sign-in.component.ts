@@ -10,7 +10,7 @@ import { AuthenticationService, TokenPayload  } from 'src/app/services/authentic
 })
 export class SignInComponent implements OnInit {
 
-    credentials: TokenPayload = {
+  credentials: TokenPayload = {
     name: '',
     email: '',
     password: ''
@@ -34,4 +34,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  redirectToLogin() {
+    this.router.navigateByUrl('/login');
+  }
 }
