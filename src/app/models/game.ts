@@ -3,7 +3,7 @@ export default interface Game {
   Author: string;
   CreationTime: Date;
   Sequence: string;
-  height: number;
-  width: number;
+  Height: number;
+  Width: number;
   _id: string;
 }
