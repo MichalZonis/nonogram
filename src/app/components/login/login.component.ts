@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthenticationService,
      private router: Router,
-     private route: ActivatedRouteSnapshot
+     //private route: ActivatedRouteSnapshot
   ) { }
 
   ngOnInit(): void {
@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      //this.router.navigateByUrl('/profile');
-      let params = this.route.queryParams
+      this.router.navigateByUrl('/home');
+      /*let params = this.route.queryParams
       let redirectURL = params['redirectURL']
-      this.router.navigateByUrl('/'+ redirectURL);
+      this.router.navigateByUrl('/'+ redirectURL);*/
     }, (err) => {
       console.error(err);
     });
