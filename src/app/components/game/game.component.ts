@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Game from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
 import { BoardComponent } from '../board/board.component';
@@ -16,22 +16,24 @@ export class GameComponent implements OnInit {
   @ViewChild(ClockComponent) stopwatch!: ClockComponent;
 
   game: Game = {Sequence: "",
-                Name: "Sample",
+                Name: "",
                 Author: "Me",
                 CreationTime: new Date(),
-                height: 3,
-                width: 4,
+                Height: 3,
+                Width: 4,
                 _id: ""}
   width: number = 7;
   height: number = 7;
+
+  didWon: boolean = false
 
   //TODO: refactor components so this will be in hints
   columnGroups: Array<Array<number>> = []
   rowGroups: Array<Array<number>> = []
 
-  defineSizeForm = this.formBuilder.group({
-    height: '',
-    width: ''
+  defineSizeForm = new FormGroup({
+    height: new FormControl('', [Validators.min(1), Validators.required]),
+    width: new FormControl('', [Validators.min(1), Validators.required])
   });
 
   constructor(
@@ -50,12 +52,12 @@ export class GameComponent implements OnInit {
 
   StartGame (): void {
     //Random game
+    this.didWon = false;
     console.log(this.defineSizeForm.value)
 
     console.log([this.width, this.height])
 
     this.GameService.GetGameBySize(this.defineSizeForm.value.width, this.defineSizeForm.value.height).subscribe((gameRes:any) => {
-      
       if(gameRes){
         //Set board size
         this.width = this.defineSizeForm.value.width
@@ -132,8 +134,10 @@ export class GameComponent implements OnInit {
   }
 
 winner() {
-this.stopwatch.clearTimer();
-//TODO: popup of the time and congrations
+  this.stopwatch.clearTimer();
+  this.didWon = true;
+  this.defineSizeForm.reset();
+  this.board.initGameBoard();
 }
 
 
