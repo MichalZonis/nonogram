@@ -15,6 +15,11 @@ import { LoginComponent } from './components/login/login.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { GalleryComponent } from './components/gallery/gallery.component';
+import { GalleryTileComponent } from './components/gallery-tile/gallery-tile.component';
+import { SizeFormComponent } from './components/size-form/size-form.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginComponent,
     SignInComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    GalleryComponent,
+    GalleryTileComponent,
+    SizeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthenticationService, 
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
