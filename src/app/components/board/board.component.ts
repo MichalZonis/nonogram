@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import {states} from '../../models/states.enum';
 import { Cell } from 'src/app/models/cell.model';
 import Game from '../../models/game';
@@ -13,11 +13,13 @@ export class BoardComponent implements OnInit, OnChanges {
 
   @Input() height: number = 7
   @Input() width: number  = 7
-  game: Cell[][] = this.initGameBoard()
+  game!: Cell[][] //= this.initGameBoard()
   @Input() disableEmptyState: boolean = false
+  @Input() BoardSeq: string = ""
 
   constructor(
-    GeneralService: GeneralService
+    GeneralService: GeneralService,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -26,13 +28,41 @@ export class BoardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("change")
-    this.game = this.initGameBoard()
+    console.log(changes)
+    //this.game = 
+    this.initGameBoard()
+    console.log(this.game)
+   
+  }
+  
+  ngDoCheck() {
   }
 
-  initGameBoard (gameString?: string) : Cell[][] {
-    console.table(this.game)
+  initGameBoard() : void {
+    
+    console.count()
+    console.log("seq:" , this.BoardSeq)
+    console.log(this.width,this.height)
+    //console.table(this.game)
+    let board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
+    console.log("let board = new Array(this.height)", board)
+    //board.fill("")
+    //board.map(() => new Array(this.width).fill("").map(() => new Cell()))
+    console.log(board)
+    if (this.BoardSeq) {
+      console.log(this.BoardSeq)
+      for (let i = 0; i < this.height; i++) {
+        for (let j = 0; j < this.width; j++) {
+          if (this.BoardSeq.charAt(this.width*i + j) == '*') {
+            console.log(board[i][j])
+            board[i][j].setNextState(this.disableEmptyState);
+          }
+        }
+      }
+    }
 
-    return new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(()=> new Cell()));
+    console.log(board)
+    this.game = board
   }
 
   createRange(r: number) {
@@ -58,5 +88,13 @@ export class BoardComponent implements OnInit, OnChanges {
     }
 
     return res;
+  }
+  
+  setHeight(height: number) {
+    this.height = height
+  }
+
+  setWidth(width: number) {
+    this.width = width
   }
 }
