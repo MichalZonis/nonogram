@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import Game from '../models/game';
 import { WebService } from './web.service';
 
 export interface UserDetails {
@@ -78,7 +79,7 @@ export class AuthenticationService {
     }
   }
 
-  private mapToken(response: Observable<any>) {
+  public mapToken(response: Observable<any>) {
     return response.pipe(
       map((data: TokenResponse) => {
         if (data.token) {
@@ -99,5 +100,39 @@ export class AuthenticationService {
 
   public profile() {
     return this.mapToken(this.WebService.get("profile", { headers: { Authorization: `Bearer ${this.getToken()}` }}));
+  }
+/*
+  public savePuzzle(newGame: Game) {
+    return this.mapToken(this.WebService.post("game", {newGame}, { headers: { Authorization: `Bearer ${this.getToken()}` }}));
+  }
+
+  public GetGameBySize(width: number, height: number) {
+    console.log(this.getToken())
+    return this.mapToken(this.WebService.get(`game/${width}/${height}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}));
+  }
+
+  public CheckWin(id: string, boardSeq: string) {
+    return this.mapToken(this.WebService.get(`game/${id}/seq/${boardSeq}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}));
+  }
+
+  public getBoardSeq(id: String){
+    return this.mapToken(this.WebService.get(`game/${id}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}));
+
+  }
+*/
+  public get(uri: string, payload?: Object) {
+    return this.mapToken(this.WebService.get(`${uri}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}))
+  }
+
+  public post(uri: string, payload?: Object) {
+    return this.mapToken(this.WebService.post(`${uri}`,payload ,{ headers: { Authorization: `Bearer ${this.getToken()}` }}))
+  }
+
+  public put(uri: string, payload?: Object) {
+    return this.mapToken(this.WebService.put(`${uri}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}))
+  }
+
+  public delete(uri: string, payload?: Object) {
+    return this.mapToken(this.WebService.delete(`${uri}`, { headers: { Authorization: `Bearer ${this.getToken()}` }}))
   }
 }
