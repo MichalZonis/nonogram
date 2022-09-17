@@ -10,15 +10,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'play', component: GameComponent },
   { path: 'create', component: GameCreationComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: SignInComponent},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  { path: 'profile', component: ProfileComponent /*, canActivate: [AuthGuardService]*/},
   { path: 'home', component: HomeComponent}
 
-];
+]; 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -26,5 +26,3 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule { }
-
-//TOOO: implement routing https://angular.io/tutorial/toh-pt5
