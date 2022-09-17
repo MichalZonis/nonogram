@@ -1,26 +1,41 @@
 import { Injectable } from '@angular/core';
 import { WebService } from './web.service';
 import Game from '../models/game';
+import { AuthenticationService } from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
 
-  constructor(private WebService: WebService) { }
+  constructor(
+    private WebService: WebService,
+    private auth: AuthenticationService
+    ) { }
 
    GetGameBySize(width: number, height: number) {
-    return this.WebService.get(`game/${width}/${height}`);
+    //return this.auth.GetGameBySize(width, height);
+    return this.auth.get(`game/${width}/${height}`);
   }
 
   CheckWin(id: string, boardSeq: string) {
-    return this.WebService.get(`game/${id}/seq/${boardSeq}`);
+    //return this.auth.get(id, boardSeq)
+    return this.auth.get(`game/${id}/seq/${boardSeq}`);
   }
 
   getRowHints(id: string) {
-    return this.WebService.get(`game/${id}/hints/rows`);
+    return this.auth.get(`game/${id}/hints/rows`);
   }
 
   getColumnHints(id: string){
-    return this.WebService.get(`game/${id}/hints/columns`);
+    return this.auth.get(`game/${id}/hints/columns`);
+  }
+
+  saveGame(newGame: Game){
+    return this.auth.post("game", {newGame});
+  }
+
+  getBoardSeq(id: String){
+    return this.auth.get(`game/${id}`);
   }
 }
+
