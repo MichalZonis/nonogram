@@ -13,4 +13,8 @@ export class AppComponent {
     public auth: AuthenticationService
     ) {
   }
+
+  ngOnDestroy() {
+    this.auth.logout()
+  }
 }
