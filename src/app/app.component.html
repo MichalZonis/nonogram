@@ -5,8 +5,8 @@
             NONOGRAM 
         </a>
     </span>
-<a class="nav-link active" aria-current="page" routerLink="/play">Play</a>
-<a class="nav-link" routerLink="/create" >Create a game</a>
+<a class="nav-link active" aria-current="page" *ngIf="auth.isLoggedIn()" routerLink="/play">Play</a>
+<a class="nav-link" *ngIf="auth.isLoggedIn()" routerLink="/create" >Create a game</a>
 <a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
 <a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/register">Register</a>
 <a class="nav-link" routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.getUserDetails()?.name }}'s profile</a>
