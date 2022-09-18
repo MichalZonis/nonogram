@@ -1,0 +1,9 @@
+<div class="input-group mb-3">
+    <input type="file" class="form-control" #imageInput id="inputGroupFile02" accept="image/*" (change)="processFile(imageInput)">
+  </div>
+
+  <div *ngIf="selectedFile" class="d-flex justify-content-center">
+    <div >
+    <img [src]="selectedFile.src" #originalImg>
+  </div>
+  </div>

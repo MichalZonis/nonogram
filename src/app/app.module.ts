@@ -20,6 +20,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { GalleryTileComponent } from './components/gallery-tile/gallery-tile.component';
 import { SizeFormComponent } from './components/size-form/size-form.component';
+import { PuzzleFromImageComponent } from './components/puzzle-from-image/puzzle-from-image.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SizeFormComponent } from './components/size-form/size-form.component';
     ProfileComponent,
     GalleryComponent,
     GalleryTileComponent,
-    SizeFormComponent
+    SizeFormComponent,
+    PuzzleFromImageComponent
   ],
   imports: [
     BrowserModule,
