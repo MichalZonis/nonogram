@@ -12,8 +12,8 @@ import { GeneralService } from 'src/app/services/general.service';
 export class BoardComponent implements OnInit, OnChanges {
 
   @Input() height: number = 7
-  @Input() width: number  = 7
-  game!: Cell[][] //= this.initGameBoard()
+  @Input() width: number = 7
+  game!: Cell[][] 
   @Input() disableEmptyState: boolean = false
   @Input() BoardSeq: string = ""
 
@@ -23,13 +23,11 @@ export class BoardComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit(): void {
-    //this.initGameBoard();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log("change")
     console.log(changes)
-    //this.game = 
     this.initGameBoard()
     console.log(this.game)
    
@@ -44,7 +42,10 @@ export class BoardComponent implements OnInit, OnChanges {
     console.log("seq:" , this.BoardSeq)
     console.log(this.width,this.height)
     //console.table(this.game)
+    //debugger
+    if (this.width && this.height) {
     let board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
+    //debugger
     console.log("let board = new Array(this.height)", board)
     //board.fill("")
     //board.map(() => new Array(this.width).fill("").map(() => new Cell()))
@@ -54,7 +55,7 @@ export class BoardComponent implements OnInit, OnChanges {
       for (let i = 0; i < this.height; i++) {
         for (let j = 0; j < this.width; j++) {
           if (this.BoardSeq.charAt(this.width*i + j) == '*') {
-            console.log(board[i][j])
+            console.log(board[i][j], i , j)
             board[i][j].setNextState(this.disableEmptyState);
           }
         }
@@ -63,6 +64,7 @@ export class BoardComponent implements OnInit, OnChanges {
 
     console.log(board)
     this.game = board
+  }
   }
 
   createRange(r: number) {
