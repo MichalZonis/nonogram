@@ -17,6 +17,7 @@ export class GameCreationComponent implements OnInit {
   width: number = 3
   height:number = 3
   PuzzleName: string = ''
+  BoardSeq = ''
 
   defineSizeForm = this.formBuilder.group({
     height: '',
@@ -62,6 +63,14 @@ export class GameCreationComponent implements OnInit {
     this.gameService.saveGame(newGame).subscribe((res) => {console.log(res.token)})
     console.log(this.board.createBoardString())
     console.log(this.PuzzleName)
-    //TODO: send board string to server to save
+
+    this.BoardSeq = ''
+    this.board.initGameBoard()
+    this.defineSizeForm.reset()
+
+  }
+
+  setBoardSeq(boardSeq: string) {
+    this.BoardSeq = boardSeq
   }
 }
