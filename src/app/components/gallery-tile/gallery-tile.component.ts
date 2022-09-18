@@ -27,7 +27,7 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
     ) { }
     
     ngOnChanges() {
-      this.board.initGameBoard()
+      //this.board.initGameBoard()
     }
     ngOnInit(): void {
     console.log(this.id)
@@ -42,7 +42,7 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
      // this.cdRef.detectChanges();
      console.log(this.game)
      //this.board.game = 
-     //this.board.initGameBoard()
+     this.board.initGameBoard()
       console.log(this.game)
      // console.log(this.board)
     })
