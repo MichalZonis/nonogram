@@ -1,16 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-    <span class="navbar-brand mb-0 h1">
-        <a class="nav-link" routerLink="/home"> 
-            NONOGRAM 
-        </a>
-    </span>
-<a class="nav-link active" aria-current="page" *ngIf="auth.isLoggedIn()" routerLink="/play">Play</a>
-<a class="nav-link" *ngIf="auth.isLoggedIn()" routerLink="/create" >Create a game</a>
-<a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
-<a class="nav-link" *ngIf="!auth.isLoggedIn()" routerLink="/register">Register</a>
-<a class="nav-link" routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.getUserDetails()?.name }}'s profile</a>
-<a class="nav-link" (click)="auth.logout()" *ngIf="auth.isLoggedIn()">Logout</a>
+        <span class="navbar-brand mb-0 h1">
+            <a class="nav-link" routerLink="/home"> 
+                NONOGRAM 
+            </a>
+        </span>
+        <a class="nav-link active text-light" aria-current="page" *ngIf="auth.isLoggedIn()" routerLink="/play">Play</a>
+        <a class="nav-link text-light" *ngIf="auth.isLoggedIn()" routerLink="/create" >Create a game</a>
+        <a class="nav-link text-light" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
+        <a class="nav-link text-light" *ngIf="!auth.isLoggedIn()" routerLink="/register">Register</a>
+        <a class="nav-link text-light" routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.getUserDetails()?.name }}'s profile</a>
+        <a class="nav-link text-light" (click)="auth.logout()" *ngIf="auth.isLoggedIn()">Logout</a>
 </div>
 </nav>
 
