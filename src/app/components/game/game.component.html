@@ -24,47 +24,52 @@
 </form>
 </div>
 
-<div class="d-flex justify-content-center h1 mb-3">
-{{game.Name}}
+<div *ngIf="game">
+  <div class="d-flex justify-content-center h1 mb-3">
+  {{game.Name}}
+  </div>
+
+  <div id="game">
+    <div class="d-flex justify-content-center">
+        <table class="table">
+          <tr>
+            <td></td>
+            <td>
+              <table id="columnGroup" class="table table-bordered border border-dark">
+                <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
+                  <td id="cell" *ngFor="let row of createRange(width); index as j"
+                  class="border border-dark">
+                    {{columnGroups[j][i]}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table id="rowGroup" class="table table-bordered border border-dark">
+                <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
+                  <td id="cell" *ngFor="let row of createRange(calculateMaxArray(rowGroups)); index as j"
+                  class="border border-dark">
+                    {{rowGroups[i][j]}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <app-board [width]="width" [height]="height"></app-board>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="m-3 d-flex justify-content-center" [ngClass]="{'game' : !didWon, 'winner': didWon}">
+      <app-clock></app-clock>
+    </div>
+
+    <button (click)="checkWin()" type="button" class="btn btn-dark m-3 d-flex">I'm Done!</button>
+  
 </div>
 
-<div id="game">
-  <div class="d-flex justify-content-center">
-      <table class="table">
-        <tr>
-          <td></td>
-          <td>
-            <table id="columnGroup" class="table table-bordered border border-dark">
-              <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
-                <td id="cell" *ngFor="let row of createRange(width); index as j"
-                class="border border-dark">
-                  {{columnGroups[j][i]}}
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <table id="rowGroup" class="table table-bordered border border-dark">
-              <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
-                <td id="cell" *ngFor="let row of createRange(calculateMaxArray(rowGroups)); index as j"
-                class="border border-dark">
-                  {{rowGroups[i][j]}}
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td>
-            <app-board [width]="width" [height]="height"></app-board>
-          </td>
-        </tr>
-      </table>
-  </div>
-  </div>
-
-  <div class="m-3 d-flex justify-content-center" [ngClass]="{'game' : !didWon, 'winner': didWon}">
-    <app-clock></app-clock>
-  </div>
-  <button *ngIf="game" (click)="checkWin()" type="button" class="btn btn-dark m-3 d-flex">I'm Done!</button>
-
+<div *ngIf="!game">There is no puzzle grid in this size</div>

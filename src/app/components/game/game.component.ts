@@ -15,17 +15,18 @@ export class GameComponent implements OnInit {
   @ViewChild(BoardComponent) board!: BoardComponent;
   @ViewChild(ClockComponent) stopwatch!: ClockComponent;
 
-  game: Game = {Sequence: "",
+  game!: Game /*= {Sequence: "",
                 Name: "",
                 Author: "Me",
                 CreationTime: new Date(),
                 Height: 3,
                 Width: 4,
-                _id: ""}
-  width: number = 7;
-  height: number = 7;
+                _id: ""}*/
+  width: number = 0;
+  height: number = 0;
 
   didWon: boolean = false
+  gameIsOn: boolean = false
 
   //TODO: refactor components so this will be in hints
   columnGroups: Array<Array<number>> = []
@@ -51,32 +52,50 @@ export class GameComponent implements OnInit {
   }
 
   StartGame (): void {
-    //Random game
+
     this.didWon = false;
+    this.gameIsOn = false;
     console.log(this.defineSizeForm.value)
 
     console.log([this.width, this.height])
-
+    
     this.GameService.GetGameBySize(this.defineSizeForm.value.width, this.defineSizeForm.value.height).subscribe((gameRes:any) => {
+      console.log(gameRes)
       if(gameRes){
+        this.gameIsOn = true;
         //Set board size
         this.width = this.defineSizeForm.value.width
         this.height = this.defineSizeForm.value.height
-
+        
         this.game = gameRes;
         console.log(this.game);
-
+        
         //Calaculate row and column data
         this.calculateGame(this.game.Sequence);
+        
+        
+        //Start clock
+        
+        this.stopwatch.clearTimer();
+        this.stopwatch.startTimer();
+      } else {
+        this.gameIsOn = false;
       }
+    }, err => {
+      this.stopwatch.clearTimer();
+      this.gameIsOn = false
+      this.width = 0
+      this.height = 0
+      this.calculateGame("");
+      console.log(err)
+      console.log(this.game)
     })
 
-    //Start clock
-    this.stopwatch.clearTimer();
-    this.stopwatch.startTimer();
+   
   }
 
   calculateGame (game: string) {
+    if (game) {
     let columnGroups = new Array(this.width);
     for (let colIndex = 0; colIndex < columnGroups.length; colIndex++) {
       columnGroups[colIndex] = new Array();
@@ -118,6 +137,8 @@ export class GameComponent implements OnInit {
     console.table(rowGroups)
     this.rowGroups = rowGroups;
     this.columnGroups = columnGroups;
+  
+    }
   }
 
   checkWin() {

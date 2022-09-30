@@ -60,7 +60,7 @@ export class GameCreationComponent implements OnInit {
 
     console.log(newGame)
 
-    this.gameService.saveGame(newGame).subscribe((res) => {console.log(res.token)})
+    this.gameService.saveGame(newGame).subscribe((res) => {console.log(res.token)}, err => console.log("error", err))
     console.log(this.board.createBoardString())
     console.log(this.PuzzleName)
 
