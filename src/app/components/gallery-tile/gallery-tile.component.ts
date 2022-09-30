@@ -13,14 +13,14 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
 
 
  @ViewChild(BoardComponent) board!: BoardComponent;
-  @Input() id: string = ''
-  game!: Game
-  width!: number;
-  height!: number;
-  boardSeq!: string;
+ // @Input() id: string = ''
+ @Input() game!: Game
+  /*@Input() width!: number;
+  @Input() height!: number;
+  @Input() boardSeq!: string;
 
   getBoardSeqsub: any ;
-  
+  */
   constructor(
     private gameService: GameService,
     private cdRef: ChangeDetectorRef
@@ -30,9 +30,9 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
       //this.board.initGameBoard()
     }
     ngOnInit(): void {
-    console.log(this.id)
-    let boardSeq;
-    
+   // console.log(this.id)
+    //let boardSeq;
+    /*
     this.getBoardSeqsub = this.gameService.getBoardSeq(this.id).subscribe((game:any) => {
       console.log("tile")
       this.game = game
@@ -45,7 +45,7 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
      this.board.initGameBoard()
       console.log(this.game)
      // console.log(this.board)
-    })
+    })*/
     
   }
 
@@ -56,6 +56,6 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.getBoardSeqsub.unsubscribe()
+   // this.getBoardSeqsub.unsubscribe()
   }
 }

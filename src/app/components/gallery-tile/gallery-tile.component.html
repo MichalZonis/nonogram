@@ -1,10 +1,13 @@
-<div class="card">
-    <app-board [width]="width" [height]="height" [BoardSeq]="boardSeq"></app-board>
+<div class="card text-center">
+  <div class="d-flex justify-content-center">
+    <app-board [width]="game.Width" [height]="game.Height" [BoardSeq]="game.Sequence" [isReadOnly]="true"></app-board>
+    </div>
     <div class="card-body">
       <h5 class="card-title">{{game.Name}}</h5>
       <p class="card-text">
-        This is a longer card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
+        Created At: 
+        <br>
+        {{game.CreationTime | date:'medium'}}
       </p>
     </div>
   </div>
