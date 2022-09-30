@@ -13,12 +13,14 @@ export class GameService {
     ) { }
 
    GetGameBySize(width: number, height: number) {
-    //return this.auth.GetGameBySize(width, height);
     return this.auth.get(`game/${width}/${height}`);
   }
 
+  getPuzzlesByUser(userID: string) {
+    return this.auth.get(`game/user/${userID}`);
+  }
+  
   CheckWin(id: string, boardSeq: string) {
-    //return this.auth.get(id, boardSeq)
     return this.auth.get(`game/${id}/seq/${boardSeq}`);
   }
 
