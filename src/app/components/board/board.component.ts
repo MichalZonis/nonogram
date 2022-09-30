@@ -11,11 +11,12 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class BoardComponent implements OnInit, OnChanges {
 
-  @Input() height: number = 7
-  @Input() width: number = 7
+  @Input() height!: number 
+  @Input() width!: number
   game!: Cell[][] 
   @Input() disableEmptyState: boolean = false
   @Input() BoardSeq: string = ""
+  @Input() isReadOnly: boolean = false
 
   constructor(
     GeneralService: GeneralService,
@@ -41,16 +42,18 @@ export class BoardComponent implements OnInit, OnChanges {
     console.count()
     console.log("seq:" , this.BoardSeq)
     console.log(this.width,this.height)
+    console.log(typeof(this.width)) 
     //console.table(this.game)
     //debugger
     if (this.width && this.height) {
-    let board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
+    var board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
+    //var board =  new Array(this.width)//.fill("").map(() => new Cell())
     //debugger
     console.log("let board = new Array(this.height)", board)
     //board.fill("")
     //board.map(() => new Array(this.width).fill("").map(() => new Cell()))
     console.log(board)
-    if (this.BoardSeq) {
+   if (this.BoardSeq) {
       console.log(this.BoardSeq)
       for (let i = 0; i < this.height; i++) {
         for (let j = 0; j < this.width; j++) {

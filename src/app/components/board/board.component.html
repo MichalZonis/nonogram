@@ -1,6 +1,6 @@
 <table class="table table-bordered border border-dark">
   <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
-    <td *ngFor="let row of createRange(width); index as j" (click)="toggleState(i, j)"
+    <td *ngFor="let row of createRange(width); index as j" (click)="!isReadOnly && toggleState(i, j)"
       [ngClass]="{'black' : game[i][j].isBlackened(), 'empty': game[i][j].isEmpty()}" class="border border-dark">
     </td>
   </tr>
