@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  error: boolean = false;
+
   constructor(
     private auth: AuthenticationService,
      private router: Router,
@@ -29,8 +31,14 @@ export class LoginComponent implements OnInit {
       let redirectURL = params['redirectURL']
       this.router.navigateByUrl('/'+ redirectURL);*/
     }, (err) => {
+      this.error = true
       console.error(err);
     });
+  }
+
+  redirectToRegister() {
+    this.router.navigateByUrl('/register');
+
   }
 
 }

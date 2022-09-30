@@ -1,13 +1,15 @@
 <div class="m-3">
     <form (submit)="login()">
-        <div class="form-group input-group  mb-3">
+        <div class="form-group input-group mb-3">
             <span class="input-group-text" id="email">Email address</span>
             <input type="email" class="form-control" name="email" placeholder="example@gmail.com" [(ngModel)]="credentials.email">
         </div>
-        <div class="form-group input-group  mb-3">
+        <div class="form-group input-group mb-3">
             <span class="input-group-text" id="password">Password</span>
-            <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+            <input type="password" [ngClass]="{'is-invalid': error}" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
         </div>
+        <div *ngIf="!error"></div>
         <button type="submit" class="btn btn-default btn-dark">Sign in!</button>
+        <button type="button" class="btn btn-light btn-default" (click)="this.redirectToRegister()" >Don't have an account?</button>
     </form>
 </div>
