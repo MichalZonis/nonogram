@@ -10,7 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/register', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'play', component: GameComponent },
   { path: 'create', component: GameCreationComponent},
   { path: 'login', component: LoginComponent},
