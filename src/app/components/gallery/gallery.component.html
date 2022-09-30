@@ -1,8 +1,10 @@
 
-<div class="grid">
-    <div *ngFor="let puzzle of puzzles; let i = index">
-     
-        <app-gallery-tile [game]="puzzle" class="grid-item" ></app-gallery-tile>
- 
-    </div>
-</div> 
+<div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4" data-masonry='{"percentPosition": true }'>
+        <div *ngFor="let puzzle of puzzles" class="col">
+            <div class="mb-2">
+                <app-gallery-tile [game]="puzzle" ></app-gallery-tile>
+            </div>
+        </div>
+    </div> 
+</div>

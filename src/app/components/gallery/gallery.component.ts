@@ -11,7 +11,7 @@ import { GameService } from 'src/app/services/game.service';
 export class GalleryComponent implements OnInit {
 
   puzzles: Game[] = []
-  
+
   constructor(
     private gameService: GameService,
     private auth: AuthenticationService
@@ -20,8 +20,7 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
     let id = this.auth.getUserDetails()._id
     this.gameService.getPuzzlesByUser(id).subscribe((puzzles:any) => {
-      this.puzzles = puzzles//.map((obj: any)=> {return obj._id})
-      console.log(this.puzzles)
+      this.puzzles = puzzles
     })
   
   }
