@@ -22,6 +22,8 @@ import { GalleryTileComponent } from './components/gallery-tile/gallery-tile.com
 import { SizeFormComponent } from './components/size-form/size-form.component';
 import { PuzzleFromImageComponent } from './components/puzzle-from-image/puzzle-from-image.component';
 import { VideoComponent } from './components/video/video.component';
+import { ScoreBoardComponent } from './components/score-board/score-board.component';
+import { SortByComponent } from './components/sort-by/sort-by.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { VideoComponent } from './components/video/video.component';
     GalleryTileComponent,
     SizeFormComponent,
     PuzzleFromImageComponent,
-    VideoComponent
+    VideoComponent,
+    ScoreBoardComponent,
+    SortByComponent
   ],
   imports: [
     BrowserModule,
