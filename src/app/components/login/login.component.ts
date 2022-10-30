@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/profile');
       /*let params = this.route.queryParams
       let redirectURL = params['redirectURL']
       this.router.navigateByUrl('/'+ redirectURL);*/
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
   redirectToRegister() {
     this.router.navigateByUrl('/register');
-
   }
 
 }

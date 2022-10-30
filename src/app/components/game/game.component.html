@@ -29,6 +29,7 @@
   {{game.Name}}
   </div>
 
+  <div *ngIf="!didWon">
   <div id="game">
     <div class="d-flex justify-content-center">
         <table class="table">
@@ -73,3 +74,10 @@
 </div>
 
 <div *ngIf="!game">There is no puzzle grid in this size</div>
+</div>
+
+<div *ngIf="didWon">
+  <div class="container-fluid justify-content-center p-5">
+    <app-score-board [puzzleID]="game._id" [newScore]="newScore"></app-score-board>
+  </div>
+</div>
