@@ -35,9 +35,6 @@ export class GameCreationComponent implements OnInit {
   }
 
   createBoard(): void {
-    console.log(this.defineSizeForm.value.width)
-    console.log(this.defineSizeForm.value.height)
-
     //Set board size
     this.width = this.defineSizeForm.value.width
     this.height = this.defineSizeForm.value.height
@@ -58,11 +55,7 @@ export class GameCreationComponent implements OnInit {
       _id: ""
     }
 
-    console.log(newGame)
-
     this.gameService.saveGame(newGame).subscribe((res) => {console.log(res.token)}, err => console.log("error", err))
-    console.log(this.board.createBoardString())
-    console.log(this.PuzzleName)
 
     this.BoardSeq = ''
     this.board.initGameBoard()

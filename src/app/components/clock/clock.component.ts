@@ -23,7 +23,6 @@ export class ClockComponent implements OnDestroy, OnInit {
       const startTime = Date.now();
       this.timerRef = setInterval(() => {
         this.counter = Date.now() - startTime;
-        console.log(this.counter)
       }, 1000)
   }
 
@@ -37,4 +36,7 @@ export class ClockComponent implements OnDestroy, OnInit {
     clearInterval(this.timerRef);
   }
 
+  getTime() {
+    return this.counter;
+  }
 }

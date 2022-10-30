@@ -18,56 +18,33 @@ export class BoardComponent implements OnInit, OnChanges {
   @Input() BoardSeq: string = ""
   @Input() isReadOnly: boolean = false
 
-  constructor(
-    GeneralService: GeneralService,
-    private cdRef: ChangeDetectorRef
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("change")
-    console.log(changes)
+    // initialize the board to size of width X height
     this.initGameBoard()
-    console.log(this.game)
-   
-  }
-  
-  ngDoCheck() {
   }
 
   initGameBoard() : void {
-    
-    console.count()
-    console.log("seq:" , this.BoardSeq)
-    console.log(this.width,this.height)
-    console.log(typeof(this.width)) 
-    //console.table(this.game)
-    //debugger
     if (this.width && this.height) {
     var board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
-    //var board =  new Array(this.width)//.fill("").map(() => new Cell())
-    //debugger
-    console.log("let board = new Array(this.height)", board)
-    //board.fill("")
-    //board.map(() => new Array(this.width).fill("").map(() => new Cell()))
-    console.log(board)
-   if (this.BoardSeq) {
-      console.log(this.BoardSeq)
-      for (let i = 0; i < this.height; i++) {
-        for (let j = 0; j < this.width; j++) {
-          if (this.BoardSeq.charAt(this.width*i + j) == '*') {
-            console.log(board[i][j], i , j)
-            board[i][j].setNextState(this.disableEmptyState);
+
+    // if the board need to be initialized according to a sequence then blacken the cells accordingly
+    if (this.BoardSeq) {
+        for (let i = 0; i < this.height; i++) {
+          for (let j = 0; j < this.width; j++) {
+            if (this.BoardSeq.charAt(this.width*i + j) == '*') {
+              board[i][j].setNextState(this.disableEmptyState);
+            }
           }
         }
       }
-    }
 
-    console.log(board)
-    this.game = board
-  }
+      this.game = board
+    }
   }
 
   createRange(r: number) {
@@ -76,7 +53,6 @@ export class BoardComponent implements OnInit, OnChanges {
 
   toggleState(row: number, column:number) {
     this.game[row][column].setNextState(this.disableEmptyState);
-    console.log('1.', "toggle", row, column, this.game[row][column].isBlackened(), Date() )
   }
 
   createBoardString() : string{

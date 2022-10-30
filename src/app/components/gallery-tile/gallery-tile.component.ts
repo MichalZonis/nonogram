@@ -13,49 +13,19 @@ export class GalleryTileComponent implements OnInit, AfterViewInit {
 
 
  @ViewChild(BoardComponent) board!: BoardComponent;
- // @Input() id: string = ''
- @Input() game!: Game
-  /*@Input() width!: number;
-  @Input() height!: number;
-  @Input() boardSeq!: string;
 
-  getBoardSeqsub: any ;
-  */
+ @Input() game!: Game
+
   constructor(
     private gameService: GameService,
     private cdRef: ChangeDetectorRef
-    ) { }
+  ) { }
     
-    ngOnChanges() {
-      //this.board.initGameBoard()
-    }
-    ngOnInit(): void {
-   // console.log(this.id)
-    //let boardSeq;
-    /*
-    this.getBoardSeqsub = this.gameService.getBoardSeq(this.id).subscribe((game:any) => {
-      console.log("tile")
-      this.game = game
-      this.height = this.game.Height
-      this.width = this.game.Width
-      this.boardSeq = this.game.Sequence
-     // this.cdRef.detectChanges();
-     console.log(this.game)
-     //this.board.game = 
-     this.board.initGameBoard()
-      console.log(this.game)
-     // console.log(this.board)
-    })*/
-    
-  }
+  ngOnChanges() {}
 
-  //set b(board: BoardComponent) {
+  ngOnInit(): void {}
 
- // }
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
-  ngOnDestroy() {
-   // this.getBoardSeqsub.unsubscribe()
-  }
+  ngOnDestroy() {  }
 }
