@@ -36,8 +36,19 @@ export class GameService {
     return this.auth.post("game", {newGame});
   }
 
-  getBoardSeq(id: String){
+  getBoardSeq(id: string){
     return this.auth.get(`game/${id}`);
+  }
+
+  saveScore(score: number, userID: string, puzzleID: string){
+    let payload = {score: score,
+                   userID: userID,
+                   puzzleID: puzzleID}
+    return this.auth.post('game/score', payload)
+  }
+
+  getScoresByGame(puzzleID: string){
+    return this.auth.get(`game/${puzzleID}/score`);
   }
 }
 

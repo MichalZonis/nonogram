@@ -27,11 +27,14 @@ export class SignInComponent implements OnInit {
   }
 
   register() {
+    console.log(this.credentials.email && this.credentials.name && this.credentials.password)
+    if(this.credentials.email && this.credentials.name && this.credentials.password){
     this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);
     });
+  }
   }
 
   redirectToLogin() {

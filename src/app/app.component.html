@@ -9,6 +9,7 @@
         <a class="nav-link text-light" *ngIf="auth.isLoggedIn()" routerLink="/create" >Create a game</a>
         <a class="nav-link text-light" *ngIf="!auth.isLoggedIn()" routerLink="/login">Login</a>
         <a class="nav-link text-light" *ngIf="!auth.isLoggedIn()" routerLink="/register">Register</a>
+        <a class="nav-link text-light" routerLink="/Test">angular material</a>
         <a class="nav-link text-light" routerLink="/profile" *ngIf="auth.isLoggedIn()">{{ auth.getUserDetails()?.name }}'s profile</a>
         <a class="nav-link text-light" (click)="auth.logout()" *ngIf="auth.isLoggedIn()">Logout</a>
 </div>

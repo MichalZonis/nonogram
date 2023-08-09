@@ -11,6 +11,7 @@ import { GameService } from 'src/app/services/game.service';
 export class GalleryComponent implements OnInit {
 
   puzzles: Game[] = []
+  sortOption = 1
 
   constructor(
     private gameService: GameService,
@@ -22,7 +23,19 @@ export class GalleryComponent implements OnInit {
     this.gameService.getPuzzlesByUser(id).subscribe((puzzles:any) => {
       this.puzzles = puzzles
     })
-  
+  }
+
+  reorganize(): void {
+    switch (this.sortOption) {
+      case 1:
+        this.puzzles.sort((puzzleA, puzzleB )=> puzzleA.CreationTime.getTime() - puzzleB.CreationTime.getTime())
+        break;
+      case 2:
+          this.puzzles.sort((puzzleA, puzzleB )=> (puzzleA.Width*puzzleA.Height) - (puzzleA.Width*puzzleA.Height))
+          break;
+      default:
+        break;
+    }
   }
 
 }

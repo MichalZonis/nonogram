@@ -1,0 +1,7 @@
+<table #table>
+ 
+    <tr *ngFor="let row of [].constructor(8)">
+      <td class="cell" *ngFor="let col of cols" [ngStyle]="{ 'max-width': '30px','width': dynamicWidth, 'padding-bottom': dynamicWidth}"></td>
+    </tr>
+ 
+</table>

@@ -24,6 +24,11 @@ import { PuzzleFromImageComponent } from './components/puzzle-from-image/puzzle-
 import { VideoComponent } from './components/video/video.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { SortByComponent } from './components/sort-by/sort-by.component';
+import { AngularMaterialComponent } from './components/angular-material/angular-material.component';
+
+import {MatTableModule} from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Board2Component } from './components/board2/board2.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +48,18 @@ import { SortByComponent } from './components/sort-by/sort-by.component';
     PuzzleFromImageComponent,
     VideoComponent,
     ScoreBoardComponent,
-    SortByComponent
+    SortByComponent,
+    AngularMaterialComponent,
+    Board2Component
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [
     AuthenticationService, 

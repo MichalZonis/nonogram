@@ -1,0 +1,16 @@
+.cell {
+    border-color: black;
+    /* aspect-ratio: 1 / 1; */
+    border-width: thin;
+    box-sizing: border-box;
+    
+    /* height: 0; */
+    /* padding-bottom: calc(100% / N); */
+    position: relative;
+}
+
+table {
+    /* aspect-ratio: 1/1; */
+    /* min-width: 50%; */
+    max-width: 50%;
+}
