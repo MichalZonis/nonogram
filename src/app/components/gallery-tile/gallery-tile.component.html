@@ -1,15 +1,17 @@
-<div class="card text-center p-0">
+<div (window:resize)="calcTileWidth()" #tile class="card text-center p-0">
   <div class="d-flex justify-content-center">
-    <app-board [width]="game.Width" [height]="game.Height" [BoardSeq]="game.Sequence" [isReadOnly]="true"></app-board>
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{game.Name}}</h5>
-      <p class="card-text">
-        {{game.Height}} X {{game.Width}}
-        <br>
-        Created At: 
-        <br>
-        {{game.CreationTime | date:'medium'}}
-      </p>
-    </div>
+    <!-- <app-board [width]="game.Width" [height]="game.Height" [BoardSeq]="game.Sequence" [isReadOnly]="true"></app-board> -->
+    <app-board2 [cols]="game.Width" [rows]="game.Height" [BoardSeq]="game.Sequence" [parentWidth]="width"
+      [isReadOnly]="true"></app-board2>
   </div>
+  <div class="card-body">
+    <h5 class="card-title">{{game.Name}}</h5>
+    <p class="card-text">
+      {{game.Height}} X {{game.Width}}
+      <br>
+      Created At:
+      <br>
+      {{game.CreationTime | date:'medium'}}
+    </p>
+  </div>
+</div>
