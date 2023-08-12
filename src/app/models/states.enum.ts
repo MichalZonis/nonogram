@@ -1,5 +1,5 @@
 export enum states {
-  undecided = "O",
-  black = "@",
-  empty = "X"
+  undecided = "?",
+  black = "*",
+  empty = "-"
 }
