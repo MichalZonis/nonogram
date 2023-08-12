@@ -52,24 +52,24 @@ export class GameComponent implements OnInit {
 
   }
 
-  StartGame (): void {
+  StartGame(): void {
 
     this.didWon = false;
     this.gameIsOn = false;
 
-    this.GameService.GetGameBySize(this.defineSizeForm.value.width, this.defineSizeForm.value.height).subscribe((gameRes:any) => {
-      if(gameRes){
+    this.GameService.GetGameBySize(+this.defineSizeForm.value.width!, +this.defineSizeForm.value.height!).subscribe((gameRes: any) => {
+      if (gameRes) {
         this.gameIsOn = true;
 
         //Set board size
-        this.width = this.defineSizeForm.value.width
-        this.height = this.defineSizeForm.value.height
-        
+        this.width = +this.defineSizeForm.value.width!
+        this.height = +this.defineSizeForm.value.height!
+
         this.game = gameRes;
-     
+
         //Calaculate row and column data
         this.calculateGame(this.game.Sequence);
-        
+
         //Start clock
         this.stopwatch.clearTimer();
         this.stopwatch.startTimer();
@@ -86,10 +86,10 @@ export class GameComponent implements OnInit {
       console.log(this.game)
     })
 
-   
+
   }
 
-  calculateGame (game: string) {
+  calculateGame(game: string) {
     if (game) {
 
       // calculate column clues
@@ -98,9 +98,9 @@ export class GameComponent implements OnInit {
         columnGroups[colIndex] = new Array();
         let currGroupLength = 0;
         //searching the col for groups
-        for(let rowIndex = 0; rowIndex < this.height; rowIndex++) {
+        for (let rowIndex = 0; rowIndex < this.height; rowIndex++) {
           //if the cell is empty
-          if(game[(this.width)*(rowIndex) + colIndex] == '-'){
+          if (game[(this.width) * (rowIndex) + colIndex] == '-') {
             columnGroups[colIndex].push(currGroupLength);
             currGroupLength = 0;
           }
@@ -111,7 +111,7 @@ export class GameComponent implements OnInit {
         columnGroups[colIndex].push(currGroupLength);
 
         // filter out groups of zero
-        columnGroups[colIndex] = columnGroups[colIndex].filter((groupSize: number) => {return groupSize > 0 })
+        columnGroups[colIndex] = columnGroups[colIndex].filter((groupSize: number) => { return groupSize > 0 })
       }
 
       // calculate row clues
@@ -120,9 +120,9 @@ export class GameComponent implements OnInit {
         rowGroups[rowIndex] = new Array();
         let currGroupLength = 0;
         //searching the col for groups
-        for(let colIndex = 0; colIndex < this.width; colIndex++) {
+        for (let colIndex = 0; colIndex < this.width; colIndex++) {
           //if the cell is empty
-          if(game[(this.width)*(rowIndex) + colIndex] == '-'){
+          if (game[(this.width) * (rowIndex) + colIndex] == '-') {
             rowGroups[rowIndex].push(currGroupLength);
             currGroupLength = 0;
           }
@@ -131,15 +131,15 @@ export class GameComponent implements OnInit {
           }
         }
         rowGroups[rowIndex].push(currGroupLength);
-        
+
         // filter out groups of zero
-        rowGroups[rowIndex] = rowGroups[rowIndex].filter((groupSize: number) => {return groupSize > 0 })
+        rowGroups[rowIndex] = rowGroups[rowIndex].filter((groupSize: number) => { return groupSize > 0 })
       }
 
       // put the clues in the properties
       this.rowGroups = rowGroups;
       this.columnGroups = columnGroups;
-    
+
     }
   }
 
@@ -147,29 +147,30 @@ export class GameComponent implements OnInit {
     let boardSeq = this.board.createBoardString();
     this.GameService.CheckWin(this.game._id, boardSeq).subscribe((res) => {
       console.log(res);
-      if(res) {
+      if (res) {
         this.winner();
       }
       else {
         //this.tryAgain();
-      }})
+      }
+    })
   }
 
-winner() {
-  this.GameService.saveScore(
-    this.stopwatch.getTime(),
-    this.auth.getUserDetails()._id,
-    this.game._id)
-    .subscribe(res => {
-      console.log(res)
-      this.newScore = res
-    })
-     
-  this.stopwatch.clearTimer();
-  this.didWon = true;
-  this.defineSizeForm.reset();
-  this.board.initGameBoard();
-}
+  winner() {
+    this.GameService.saveScore(
+      this.stopwatch.getTime(),
+      this.auth.getUserDetails()._id,
+      this.game._id)
+      .subscribe(res => {
+        console.log(res)
+        this.newScore = res
+      })
+
+    this.stopwatch.clearTimer();
+    this.didWon = true;
+    this.defineSizeForm.reset();
+    this.board.initGameBoard();
+  }
 
 
   createRange(r: number) {
@@ -177,9 +178,9 @@ winner() {
   }
 
   calculateMaxArray(twoDArray: Array<Array<number>>): number {
-    const tempArray : Array<Array<number>> = [];
+    const tempArray: Array<Array<number>> = [];
     twoDArray.forEach(val => tempArray.push(Object.assign([], val)));
-    return tempArray.sort((a, b) => { return b.length - a.length;})[0].length
+    return tempArray.sort((a, b) => { return b.length - a.length; })[0].length
   }
 
   redirectToScoreBoard() {

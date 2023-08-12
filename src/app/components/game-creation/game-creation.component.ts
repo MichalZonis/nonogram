@@ -15,7 +15,7 @@ export class GameCreationComponent implements OnInit {
   @ViewChild(BoardComponent) board!: BoardComponent;
 
   width: number = 3
-  height:number = 3
+  height: number = 3
   PuzzleName: string = ''
   BoardSeq = ''
 
@@ -36,13 +36,13 @@ export class GameCreationComponent implements OnInit {
 
   createBoard(): void {
     //Set board size
-    this.width = this.defineSizeForm.value.width
-    this.height = this.defineSizeForm.value.height
+    this.width = +this.defineSizeForm.value.width!
+    this.height = +this.defineSizeForm.value.height!
   }
 
   CreateGame(): void {
 
-    if(!this.auth.isLoggedIn()) {
+    if (!this.auth.isLoggedIn()) {
       this.router.navigateByUrl('/login') // TODO: not redirecting at the moment
     }
     let newGame: Game = {
@@ -55,7 +55,7 @@ export class GameCreationComponent implements OnInit {
       _id: ""
     }
 
-    this.gameService.saveGame(newGame).subscribe((res) => {console.log(res.token)}, err => console.log("error", err))
+    this.gameService.saveGame(newGame).subscribe((res) => { console.log(res.token) }, err => console.log("error", err))
 
     this.BoardSeq = ''
     this.board.initGameBoard()
