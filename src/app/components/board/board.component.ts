@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import {states} from '../../models/states.enum';
+import { states } from '../../models/states.enum';
 import { Cell } from 'src/app/models/cell.model';
 import Game from '../../models/game';
 import { GeneralService } from 'src/app/services/general.service';
@@ -11,9 +11,9 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class BoardComponent implements OnInit, OnChanges {
 
-  @Input() height!: number 
+  @Input() height!: number
   @Input() width!: number
-  game!: Cell[][] 
+  game!: Cell[][]
   @Input() disableEmptyState: boolean = false
   @Input() BoardSeq: string = ""
   @Input() isReadOnly: boolean = false
@@ -28,15 +28,15 @@ export class BoardComponent implements OnInit, OnChanges {
     this.initGameBoard()
   }
 
-  initGameBoard() : void {
+  initGameBoard(): void {
     if (this.width && this.height) {
-    var board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
+      var board = new Array(this.height).fill("").map(() => new Array(this.width).fill("").map(() => new Cell()))
 
-    // if the board need to be initialized according to a sequence then blacken the cells accordingly
-    if (this.BoardSeq) {
+      // if the board need to be initialized according to a sequence then blacken the cells accordingly
+      if (this.BoardSeq) {
         for (let i = 0; i < this.height; i++) {
           for (let j = 0; j < this.width; j++) {
-            if (this.BoardSeq.charAt(this.width*i + j) == '*') {
+            if (this.BoardSeq.charAt(this.width * i + j) == '*') {
               board[i][j].setNextState(this.disableEmptyState);
             }
           }
@@ -51,15 +51,15 @@ export class BoardComponent implements OnInit, OnChanges {
     return new Array(r);
   }
 
-  toggleState(row: number, column:number) {
+  toggleState(row: number, column: number) {
     this.game[row][column].setNextState(this.disableEmptyState);
   }
 
-  createBoardString() : string{
+  createBoardString(): string {
     let res: string = "";
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        if(this.game[i][j].isBlackened()){
+        if (this.game[i][j].isBlackened()) {
           res += '*';
         }
         else {
@@ -70,7 +70,7 @@ export class BoardComponent implements OnInit, OnChanges {
 
     return res;
   }
-  
+
   setHeight(height: number) {
     this.height = height
   }
