@@ -1,7 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import Game from 'src/app/models/game';
-import { GameService } from 'src/app/services/game.service';
 import { BoardComponent } from '../board/board.component';
 
 @Component({
@@ -9,23 +7,21 @@ import { BoardComponent } from '../board/board.component';
   templateUrl: './gallery-tile.component.html',
   styleUrls: ['./gallery-tile.component.css']
 })
-export class GalleryTileComponent implements OnInit, AfterViewInit {
+export class GalleryTileComponent implements OnInit {
 
+  @ViewChild(BoardComponent) board!: BoardComponent;
 
- @ViewChild(BoardComponent) board!: BoardComponent;
+  @Input() game!: Game
+  @ViewChild('tile') tile!: ElementRef;
+  width!: number
 
- @Input() game!: Game
+  constructor() { }
 
-  constructor(
-    private gameService: GameService,
-    private cdRef: ChangeDetectorRef
-  ) { }
-    
-  ngOnChanges() {}
+  ngOnInit() {
+    this.width = this.tile.nativeElement.offsetWidth;
+  }
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit() {}
-
-  ngOnDestroy() {  }
+  calcTileWidth() {
+    this.width = this.tile.nativeElement.offsetWidth;
+  }
 }
