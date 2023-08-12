@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,10 +25,11 @@ import { VideoComponent } from './components/video/video.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { SortByComponent } from './components/sort-by/sort-by.component';
 import { AngularMaterialComponent } from './components/angular-material/angular-material.component';
-
-import {MatTableModule} from '@angular/material/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Board2Component } from './components/board2/board2.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { Board2Component } from './components/board2/board2.component';
     ScoreBoardComponent,
     SortByComponent,
     AngularMaterialComponent,
-    Board2Component
+    Board2Component,
+    
   ],
   imports: [
     BrowserModule,
@@ -59,10 +61,11 @@ import { Board2Component } from './components/board2/board2.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [
-    AuthenticationService, 
+    AuthenticationService,
     AuthGuardService
   ],
   bootstrap: [AppComponent]
