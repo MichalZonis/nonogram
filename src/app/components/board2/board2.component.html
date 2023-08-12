@@ -1,7 +1,7 @@
-<table #table>
- 
-    <tr *ngFor="let row of [].constructor(8)">
-      <td class="cell" *ngFor="let col of cols" [ngStyle]="{ 'max-width': '30px','width': dynamicWidth, 'padding-bottom': dynamicWidth}"></td>
-    </tr>
- 
+<table (window:resize)="calcCellMeasures()">
+  <tr *ngFor="let row of [].constructor(rows); index as i">
+    <td class="cell" *ngFor="let col of [].constructor(cols); index as j" (click)="forwardToggle(i,j)" (contextmenu)="backwardToggle(i,j)"
+      [ngStyle]="{ 'width': cell_width + 'px', 'padding-bottom': cell_width + 'px'}"
+      [ngClass]="{'black' : gridState[i][j] == states.black, 'empty': gridState[i][j] == states.empty}"></td>
+  </tr>
 </table>
