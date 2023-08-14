@@ -1,17 +1,21 @@
 .cell {
-    border-color: black;
-    border-width: thin;
-    box-sizing: border-box;
-    position: relative;
+  border-color: black;
+  border-width: thin;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .empty {
-    background-color: white;
-    text-indent: -9999px;
-    background: url(../../../assets/x.svg);
-     background-size: 100%; 
-  }
-  
-  .black {
-    background-color: black;
-  }
+  background-color: white;
+  text-indent: -9999px;
+  background: url(../../../assets/x.svg);
+  background-size: 100%;
+}
+
+.black {
+  background-color: black;
+}
+
+.clickable {
+  cursor: pointer;
+}

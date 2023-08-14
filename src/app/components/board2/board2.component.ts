@@ -6,7 +6,7 @@ import { states } from 'src/app/models/states.enum';
   templateUrl: './board2.component.html',
   styleUrls: ['./board2.component.css']
 })
-export class Board2Component implements OnInit {
+export class Board2Component {
 
   @Input() rows = 4;
   @Input() cols = 16;
@@ -19,8 +19,8 @@ export class Board2Component implements OnInit {
   cell_width!: number;
 
   constructor() { }
-
-  ngOnInit(): void {
+  
+  ngAfterContentInit() {
     this.calcCellMeasures()
     this.populateGrid();
   }
@@ -34,14 +34,12 @@ export class Board2Component implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    //console.log(changes)
     if (changes["parentWidth"])
       this.calcCellMeasures()
   }
 
   populateGrid() {
     let tmpGrid: states[][] = new Array(this.rows).fill("").map(() => new Array(this.cols).fill(states.undecided))
-
     // if the board need to be initialized according to a sequence then blacken the cells accordingly
     if (this.BoardSeq) {
       for (let i = 0; i < this.rows; i++) {
@@ -56,20 +54,21 @@ export class Board2Component implements OnInit {
     this.gridState = tmpGrid
   }
 
-  forwardToggle(row: number, col: number) {
-    let enumVals = Object.values(states)
-    let index = enumVals.indexOf(this.gridState[row][col])
-    let next = enumVals[(index + 1) % 3]
-    this.gridState[row][col] = next
-  }
+  toggle(row: number, col: number, isForwards: boolean) {
+    if (!this.isReadOnly) {
+      const enumVals = Object.values(states)
+      const index = enumVals.indexOf(this.gridState[row][col])
+      let addFactor = 0;
 
-  backwardToggle(row: number, col: number) {
-    let enumVals = Object.values(states)
-    let index = enumVals.indexOf(this.gridState[row][col])
-    let next = enumVals[(index + 2) % 3]
-    this.gridState[row][col] = next
+      if (isForwards) {
+        addFactor = 1;
+      } else {
+        addFactor = 2;
+      }
+
+      const next = enumVals[(index + addFactor) % 3]
+      this.gridState[row][col] = next
+    }
     return false;
   }
-
-  
 }

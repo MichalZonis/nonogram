@@ -7,7 +7,7 @@ import { BoardComponent } from '../board/board.component';
   templateUrl: './gallery-tile.component.html',
   styleUrls: ['./gallery-tile.component.css']
 })
-export class GalleryTileComponent implements OnInit {
+export class GalleryTileComponent  {
 
   @ViewChild(BoardComponent) board!: BoardComponent;
 
@@ -17,7 +17,7 @@ export class GalleryTileComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.width = this.tile.nativeElement.offsetWidth;
   }
 
