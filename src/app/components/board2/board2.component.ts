@@ -8,6 +8,7 @@ import { states } from 'src/app/models/states.enum';
 })
 export class Board2Component {
 
+  // TODO: change with new game object
   @Input() rows = 4;
   @Input() cols = 16;
   gridState: states[][] = new Array(this.rows).fill("").map(() => new Array(this.cols).fill(states.undecided))

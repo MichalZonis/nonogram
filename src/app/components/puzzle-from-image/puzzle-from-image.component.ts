@@ -61,6 +61,7 @@ export class PuzzleFromImageComponent implements OnInit {
     let xStep = w / this.width
     let yStep = h / this.height
 
+  // TODO: change algorithm with proportioned grid - you can only choose the num of rows. 
     // PASTE GIVEN IMAGE TO CANVAS
     icanvas.getContext('2d')!.drawImage(img, 0, 0, w, h);
     let ictx = icanvas.getContext('2d');
