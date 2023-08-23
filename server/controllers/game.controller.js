@@ -154,8 +154,6 @@ module.exports.parsePattern = function (req, res) {
         }
     }
     req.grid.parsedPattern = grid
-    console.log(req.grid)
-    //console.log(grid, new Date())
     res.send(req.grid)
 }
 
