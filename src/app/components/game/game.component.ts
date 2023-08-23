@@ -52,39 +52,40 @@ export class GameComponent implements OnInit {
 
   }
 
-  StartGame(): void {
+  async StartGame() {
 
     this.didWon = false;
     this.gameIsOn = false;
 
-    this.GameService.GetGameBySize(+this.defineSizeForm.value.width!, +this.defineSizeForm.value.height!).subscribe((gameRes: any) => {
-      if (gameRes) {
-        this.gameIsOn = true;
+    const gameRes = this.GameService.GetGameBySize(+this.defineSizeForm.value.width!, +this.defineSizeForm.value.height!)//.subscribe((gameRes: any) => {
+    if (gameRes) {
+      this.gameIsOn = true;
 
-        //Set board size
-        this.width = +this.defineSizeForm.value.width!
-        this.height = +this.defineSizeForm.value.height!
+      //Set board size
+      this.width = +this.defineSizeForm.value.width!
+      this.height = +this.defineSizeForm.value.height!
 
-        this.game = gameRes;
+      this.game = await gameRes;
 
-        //Calaculate row and column data
-        this.calculateGame(this.game.Sequence);
+      // TODO: refactor with "Grid"
+      //Calaculate row and column data
+      this.calculateGame(this.game.Sequence);
 
-        //Start clock
-        this.stopwatch.clearTimer();
-        this.stopwatch.startTimer();
-      } else {
-        this.gameIsOn = false;
-      }
-    }, err => {
+      //Start clock
       this.stopwatch.clearTimer();
-      this.gameIsOn = false
-      this.width = 0
-      this.height = 0
-      this.calculateGame("");
-      console.log(err)
-      console.log(this.game)
-    })
+      this.stopwatch.startTimer();
+    } else {
+      this.gameIsOn = false;
+    }
+    //}, err => {
+    this.stopwatch.clearTimer();
+    this.gameIsOn = false
+    this.width = 0
+    this.height = 0
+    this.calculateGame("");
+    //  console.log(err)
+    console.log(this.game)
+    //})
 
 
   }
