@@ -81,7 +81,7 @@ export class AuthenticationService {
 
   public mapToken(response: Observable<any>) {
     return response.pipe(
-      map((data: TokenResponse) => {
+      map((data) => {
         if (data.token) {
           this.saveToken(data.token);
         }
