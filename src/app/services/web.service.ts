@@ -12,12 +12,10 @@ export class WebService {
   }
 
   public get(uri: string, payload?: Object) {
-    console.log(payload)
     return this.http.get(`${this.ROOT_URL}/${uri}`, payload)
   }
 
   public post(uri: string, payload?: Object, options?: {}) {
-    console.log("post", payload)
     return this.http.post(`${this.ROOT_URL}/${uri}`, payload, options)
   }
 
