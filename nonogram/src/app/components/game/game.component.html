@@ -1,45 +1,45 @@
 <div class="container-fluid">
-<form [formGroup]="defineSizeForm" (ngSubmit)="StartGame()" ngNativeValidate>
-  <div class="row">
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="height">Height</span>
-        <input type="number" formControlName="height" class="form-control"
-         aria-label="height" aria-describedby="height" required min="1">
+  <form [formGroup]="defineSizeForm" (ngSubmit)="StartGame()" ngNativeValidate>
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="height">Height</span>
+          <input type="number" formControlName="height" class="form-control" aria-label="height"
+            aria-describedby="height" required min="1">
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="width">Width</span>
+          <input type="number" formControlName="width" class="form-control" aria-label="width" aria-describedby="width"
+            required min="1">
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <button type="submit" class="btn btn-dark">play!</button>
+        </div>
       </div>
     </div>
-    <div class="col">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="width">Width</span>
-        <input type="number" formControlName="width" class="form-control"
-         aria-label="width" aria-describedby="width" required min="1">
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group mb-3">
-      <button type="submit" class="btn btn-dark" >play!</button>
-      </div>
-    </div>
-  </div>
-</form>
+  </form>
 </div>
 
 <div *ngIf="game">
   <div class="d-flex justify-content-center h1 mb-3">
-  {{game.Name}}
+    {{game.Name}}
   </div>
 
   <div *ngIf="!didWon">
-  <div id="game">
-    <div class="d-flex justify-content-center">
+    <div id="game">
+      <div class="d-flex justify-content-center">
         <table class="table">
           <tr>
             <td></td>
             <td>
               <table id="columnGroup" class="table table-bordered border border-dark">
-                <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
-                  <td id="cell" *ngFor="let row of createRange(width); index as j"
+                <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i"
                   class="border border-dark">
+                  <td id="cell" *ngFor="let row of createRange(width); index as j" class="border border-dark">
                     {{columnGroups[j][i]}}
                   </td>
                 </tr>
@@ -51,7 +51,7 @@
               <table id="rowGroup" class="table table-bordered border border-dark">
                 <tr *ngFor="let line of createRange(height); index as i" class="border border-dark">
                   <td id="cell" *ngFor="let row of createRange(calculateMaxArray(rowGroups)); index as j"
-                  class="border border-dark">
+                    class="border border-dark">
                     {{rowGroups[i][j]}}
                   </td>
                 </tr>
@@ -64,20 +64,24 @@
         </table>
       </div>
     </div>
-    
+    <app-hints [position]="'horizontal'" [gridWidth]="width" [gridHeight]="height" [groups]="game.horizontalHints!">
+    </app-hints>
+    <app-board [width]="width" [height]="height"></app-board>
+
     <div class="m-3 d-flex justify-content-center" [ngClass]="{'game' : !didWon, 'winner': didWon}">
       <app-clock></app-clock>
     </div>
 
     <button (click)="checkWin()" type="button" class="btn btn-dark m-3 d-flex">I'm Done!</button>
-  
-</div>
 
-<div *ngIf="!game">There is no puzzle grid in this size</div>
+  </div>
+
+  <div *ngIf="!game">There is no puzzle grid in this size</div>
 </div>
 
 <div *ngIf="didWon">
   <div class="container-fluid justify-content-center p-5">
+
     <app-score-board [puzzleID]="game._id" [newScore]="newScore"></app-score-board>
   </div>
 </div>

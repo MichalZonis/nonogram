@@ -1,8 +1,21 @@
-<!--table id="columnGroup" class="table table-bordered border border-dark">
-    <tr *ngFor="let line of createRange(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
-      <td id="cell" *ngFor="let row of createRange(width); index as j"
+<!-- <table id="columnGroup" class="table table-bordered border border-dark">
+    <tr *ngFor="let line of [].constructor(calculateMaxArray(columnGroups)); index as i" class="border border-dark">
+      <td id="cell" *ngFor="let row of [].constructor(width); index as j"
       class="border border-dark">
         {{columnGroups[j][i]}}
       </td>
     </tr>
-  </table-->
+  </table> -->
+
+<table class="">
+  <tr *ngFor="let row of [].constructor(rows); index as i">
+    <td class="cell" [ngStyle]="{ 'width': cell_width + 'px', 'padding-bottom': cell_width + 'px'}" *ngFor="let col of [].constructor(cols); index as j">
+      <div *ngIf="position == 'horizontal'">
+        {{groups[i][j]}}
+      </div>
+      <div *ngIf="position == 'vertical'">
+        {{groups[j][i]}}
+      </div>
+    </td>
+  </tr>
+</table>

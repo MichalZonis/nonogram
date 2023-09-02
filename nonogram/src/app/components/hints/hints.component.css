@@ -1,4 +1,4 @@
-td {
+/* td {
     width: 30px;
     height: 30px;
     text-overflow: ellipsis;
@@ -6,4 +6,11 @@ td {
     background-size: 30px 30px;
     font-size: 15px;
     text-align: center;
-}
+} */
+
+.cell {
+    border-color: black;
+    border-width: thin;
+    box-sizing: border-box;
+    position: relative;
+  }
