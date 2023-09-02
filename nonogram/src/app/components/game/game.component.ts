@@ -186,6 +186,7 @@ export class GameComponent implements OnInit {
 
   redirectToScoreBoard() {
     this.router.navigateByUrl('/register');
-
   }
+
+  
 }
